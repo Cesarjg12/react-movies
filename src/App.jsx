@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LoginPage from './LoginPage/LoginPage';
+import MoviesListPage from './MovieListPage/MoviesListPage';
+import MovieDetailPage from './MovieDetailPage/MovieDetailPage';
+import NavBar from './Components/NavBar/NavBar';
+import { movies } from './data';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [user, setUser] = useState(null);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      {user && <NavBar user={user} />}
+      <Switch>
+        <Route exact path="/">
+          {!user ? <LoginPage setUser={setUser} /> : <MoviesListPage movies={movies} />}
+        </Route>
+        <Route path="/movies/:movieName">
+          {user ? <MovieDetailPage movies={movies} /> : <LoginPage setUser={setUser} />}
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
-
-export default App
