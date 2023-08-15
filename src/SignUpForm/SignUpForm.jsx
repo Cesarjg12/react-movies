@@ -17,7 +17,7 @@ export default function SignUpForm({ signUp }) {
 
     return (
         <>
-            <h3>Enter a Username to Sign Up</h3>
+            <h3>Enter Username to sign up</h3>
             <form onSubmit={handleUser}>
                 <div>
                     <label>Username</label>
