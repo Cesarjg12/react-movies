@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoginForm from '../SignUpForm/SignUpForm';
+import SignUpForm from '../SignUpForm/SignUpForm';
 
 export default function LoginPage({ setUser }) {
     const handleLogin = (username) => {
@@ -9,7 +9,7 @@ export default function LoginPage({ setUser }) {
     return (
       <>
         <h1>Login Page</h1>
-        <LoginForm onLogin={handleLogin} />
+        <SignUpForm signUp={handleLogin} />
       </>
     );
-  }
+}
