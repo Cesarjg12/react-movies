@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LoginForm from '../SignUpForm/SignUpForm';
 
 export default function LoginPage({ setUser }) {
     const handleLogin = (username) => {
