@@ -18,21 +18,19 @@ export default function App() {
     <Router>
       <main>
         <h1>React Movies</h1>
-        {user ? (
-          <>
-            <NavBar user={user} />
-            <Routes>
-              <Route path="/" element={<MoviesListPage movies={movies} />} />
-              <Route
-                path="/movies/:movieName"
-                element={<MovieDetailPage movies={movies} />}
-              />
-              <Route path="/actors" element={<ActorListPage />} />
-            </Routes>
-          </>
-        ) : (
-          <LoginPage setUser={setUser} />
-        )}
+        {user && <NavBar user={user} />}
+        <Routes>
+          <Route path="/movies" element={<MoviesListPage movies={movies} />} />
+          <Route
+            path="/movies/:movieName"
+            element={<MovieDetailPage movies={movies} />}
+          />
+          <Route path="/actors" element={<ActorListPage />} />
+          <Route
+            path="/"
+            element={user ? <MoviesListPage movies={movies} /> : <LoginPage setUser={handleSetUser} />}
+          />
+        </Routes>
       </main>
     </Router>
   );
